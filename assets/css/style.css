@@ -1,14 +1,17 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #navbar {
     display: flex;
     justify-content: right;
     background: linear-gradient(to right, rgb(110, 110, 120), rgb(10, 15, 10));
-    height: 7vh;
-    padding: 0.3em;
+    height: 8vh;
     width: 100%;
 }
 
@@ -17,56 +20,87 @@ body {
     justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-right: 6em;
+    padding-right: 3%;
 }
 
 #navbar .navButton {
     background-color: transparent;
     color: white;
-    border-color: white;
-    width: 10em;
+    border: 2px solid white;
+    width: 9rem;
+    max-width: 10rem;
     border-radius: 15px;
-    height: 3em;
-    transition: all 0.8s ease;
+    height: 2.5em;
+    max-height: 3em;
+    transition: transform 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
 }
+
+.navButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right in oklch, rgba(10, 15, 10, 1), 30%, rgba(100, 100, 130, 0.6) 70%);
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
 
 #navbar .navButton:hover {
     transform: scale(1.06);
-    background: linear-gradient(to right in oklch, rgba(10, 15, 10, 1), 30%, rgba(100, 100, 130, 0.6) 70%);
+    color: white;
+}
+
+#navbar .navButton:hover::before {
+    left: 0;
 }
 
 #langs {
-    width: 6em;
+    width: 100%;
     height: 2vh;
 }
 
 #principal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     flex: 1;
+    padding: 0.8rem;
+    text-align: justify;
 }
 
 #history .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 2rem;
 }
+
+#history #title.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
 
 .rodape {
     display: flex;
     justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
     margin-top: auto;
     background: linear-gradient(to right, rgb(110, 110, 120), rgb(10, 15, 10));
-    height: 4rem;
+    height: 8vh;
     width: 100%;
+    align-items: center;
 }
 
 .rodape small {
     color: white;
-    font-size: 1em;
+    font-size: 1rem;
 }
