@@ -32,7 +32,7 @@ body {
 
 #navbar .navButton:hover {
     transform: scale(1.06);
-    background: linear-gradient(to top in oklch, rgba(10, 15, 10, 1), 30%, rgba(100, 100, 130, 0.6) 70%);
+    background: linear-gradient(to right in oklch, rgba(10, 15, 10, 1), 30%, rgba(100, 100, 130, 0.6) 70%);
 }
 
 #langs {
@@ -47,6 +47,13 @@ body {
     flex: 1;
 }
 
+#history .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem;
+}
+
 .rodape {
     display: flex;
     justify-content: center;
@@ -55,7 +62,7 @@ body {
     align-items: center;
     margin-top: auto;
     background: linear-gradient(to right, rgb(110, 110, 120), rgb(10, 15, 10));
-    height: 4em;
+    height: 4rem;
     width: 100%;
 }
 
