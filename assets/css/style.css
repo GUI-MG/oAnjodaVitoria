@@ -141,6 +141,7 @@ body {
     font-size: 1.3rem;
     padding: 2rem;
     margin-bottom: 2rem;
+    margin-top: auto;
 }
 
 #downloadBook {
@@ -183,6 +184,65 @@ body {
     right: 0;
 }
 
+#paints {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 90vh;
+    max-height: 110vh;
+    width: 80%;
+    max-width: 90%;
+    gap: 2rem;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+#paintsCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 2px 1px 2px 3px rgba(0, 0, 0, 0.2);
+    height: 40vh;
+    border-radius: 15px;
+    width: 30%;
+    color: white;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+#paintsCards .container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/genericPixelArt.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+#fase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+}
+
+#paintsCards:hover {
+    transform: scale(1.1);
+}
+
+#paintsCards:hover #fase {
+    align-items: flex-start;
+    padding: 3rem;
+}
+
 .rodape {
     display: flex;
     justify-content: center;
@@ -193,6 +253,7 @@ body {
     height: 8vh;
     width: 100%;
     align-items: center;
+    z-index: 999;
 }
 
 .rodape small {
