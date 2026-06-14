@@ -64,12 +64,12 @@ body {
 
 #principal {
     flex: 1;
-    gap: 1.4rem;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .presentation {
@@ -114,6 +114,7 @@ body {
     border-radius: 10px;
     text-align: justify;
     transition: transform 0.6s ease;
+    height: 14vh;
 }
 
 #topic:hover {
@@ -126,7 +127,6 @@ body {
 
 #topic h3 {
     font-size: 1.4rem;
-    text-align: left;
 }
 
 #pdf {
@@ -140,7 +140,6 @@ body {
     width: 60%;
     border-radius: 20px;
     font-size: 1.3rem;
-    margin-bottom: 2rem;
     padding: 2rem;
 }
 
