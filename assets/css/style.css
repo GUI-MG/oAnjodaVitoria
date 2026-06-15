@@ -195,7 +195,7 @@ body {
     width: 80%;
     max-width: 90%;
     gap: 2rem;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     align-items: center;
 }
 
@@ -255,22 +255,13 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-#development #warn {
     text-align: justify;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: all 0.5s ease;
+    font-size: 1.4em;
+    transition: all 0.4s ease;
 }
 
-#warn:hover{
-    transform: scale(1.1);
-    box-shadow: 1px 1px 1px 2px rgba(47, 74, 160, 0.1);
-    border-radius: 20px;
+#development:hover {
+    transform: scale(1.01);
 }
 
 .rodape {
