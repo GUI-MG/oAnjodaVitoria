@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: right;
     background: linear-gradient(to right, rgb(110, 110, 120), rgb(10, 15, 10));
-    height: 8vh;
+    height: 10vh;
     width: 100%;
     margin-bottom: 2rem;
 }
@@ -21,6 +21,7 @@ body {
     justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
+    height: 100%;
     padding-right: 3%;
 }
 
@@ -28,16 +29,17 @@ body {
     background-color: transparent;
     color: white;
     border: 2px solid white;
-    width: 7.4rem;
+    width: 8.8rem;
     max-width: 10rem;
-    border-radius: 15px;
-    height: 2.5em;
-    max-height: 3em;
+    border-radius: 16px;
+    height: 3.5em;
+    max-height: 5em;
     transition: transform 0.8s ease;
     position: relative;
     overflow: hidden;
     z-index: 1;
     cursor: pointer;
+    font-size: 1em;
 }
 
 .navButton::before {
@@ -251,7 +253,7 @@ body {
     flex-wrap: nowrap;
     margin-top: auto;
     background: linear-gradient(to right, rgb(110, 110, 120), rgb(10, 15, 10));
-    height: 8vh;
+    height: 6vh;
     width: 100%;
     align-items: center;
     z-index: 999;
