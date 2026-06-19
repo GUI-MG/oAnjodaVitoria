@@ -29,11 +29,11 @@ body {
     background-color: transparent;
     color: white;
     border: 2px solid white;
-    width: 8.8rem;
-    max-width: 10rem;
+    width: 8.4rem;
+    max-width: 9rem;
     border-radius: 16px;
-    height: 3.5em;
-    max-height: 5em;
+    height: 3em;
+    max-height: 3.5em;
     transition: transform 0.8s ease;
     position: relative;
     overflow: hidden;
@@ -194,50 +194,16 @@ body {
     flex-grow: 1;
     height: 100vh;
     max-height: 150vh;
-    width: 95%;
-    max-width: 98%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     margin-bottom: 2em;
-    /* gap: 2em; */
-    padding: 1em;
-}
-
-#paintsCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* box-shadow: 2px 1px 2px 3px rgba(0, 0, 0, 0.2); */
-    height: 95%;
-    border-radius: 25px;
-    width: 98%;
-    color: white;
-    overflow: auto;
-    transition: all 0.8s ease;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    flex-basis: 200;
-    max-width: 100%;
-    transition-delay: 10ms;
-    max-height: 95%;
-}
-
-#paintsCard .container {
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to left, rgb(150, 150, 150), rgb(0, 0, 0));
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
     background: url(../img/genericPixelArt.jpeg);
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    transition: all 0.6s ease;
 }
 
 #part {
@@ -253,17 +219,13 @@ body {
     transition: all 0.8s ease;
 }
 
-#paintsCard:hover {
-    transform: scale(1.02);
-}
-
-#paintsCard:hover #part {
+#paints:hover #part {
     align-items: flex-start;
     padding-left: 1em;
     flex-wrap: wrap;
 }
 
-#paintsCard:hover #part::after {
+#paints:hover #part::after {
     content: "Imagem da parte referente";
 }
 
@@ -302,10 +264,11 @@ body {
     height: 20vh;
     width: 90%;
     max-width: 92%;
-    background: linear-gradient(to right, rgb(240, 240, 240), rgb(160, 160, 170));
+    background: linear-gradient(to left, rgb(240, 240, 240), rgb(160, 160, 170));
     border-radius: 30px;
     padding: 0.8em;
     transition: all 0.6s ease;
+    position: relative;
 }
 
 #personCard:hover {
@@ -314,7 +277,7 @@ body {
 
 #personCard a {
     text-decoration: none;
-    color: white;
+    color: gray;
 }
 
 #personCard .container {
@@ -335,7 +298,7 @@ body {
     width: 100%;
     height: 30%;
     font-family: Arial, Helvetica, sans-serif;
-    color: black;
+    color: white;
 }
 
 .contacts {
@@ -351,7 +314,12 @@ body {
     margin-top: auto;
 }
 
-.contacts .personalPresentation {
+.contacts a {
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.personalPresentation {
     display: flex;
     justify-content: left;
     text-align: justify;
@@ -361,12 +329,10 @@ body {
     max-width: 100%;
     max-height: 95%;
     padding: 1em;
+    color: white;
 }
 
-.contacts a {
-    font-size: 2em;
-    cursor: pointer;
-}
+
 
 .rodape {
     display: flex;
