@@ -137,7 +137,7 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: 2px 1px 3px 2px rgba(0, 0, 0, 0.2);
-    height: 14vh;
+    height: 16vh;
     width: 55%;
     border-radius: 20px;
     font-size: 1.1rem;
@@ -145,10 +145,6 @@ body {
     margin-bottom: 2rem;
     margin-top: auto;
     transition: all 0.6s ease;
-}
-
-#pdf:hover {
-    transform: scale(1.02);
 }
 
 #downloadBook {
@@ -196,39 +192,38 @@ body {
     flex-wrap: nowrap;
     flex-basis: 200;
     flex-grow: 1;
-    height: 126vh;
+    height: 100vh;
     max-height: 150vh;
-    width: 90%;
-    max-width: 92%;
+    width: 95%;
+    max-width: 98%;
     align-items: center;
     justify-content: center;
     margin-bottom: 2em;
-    gap: 2em;
+    /* gap: 2em; */
     padding: 1em;
 }
 
-#paintsCards {
+#paintsCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 2px 1px 2px 3px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 1px 2px 3px rgba(0, 0, 0, 0.2); */
     height: 95%;
     border-radius: 25px;
-    width: 85%;
+    width: 98%;
     color: white;
     overflow: auto;
     transition: all 0.8s ease;
     flex-wrap: wrap;
     flex-grow: 1;
     flex-basis: 200;
-    max-width: 95%;
-    transition-delay: 1s;
-    height: 90%;
+    max-width: 100%;
+    transition-delay: 10ms;
     max-height: 95%;
 }
 
-#paintsCards .container {
+#paintsCard .container {
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -239,6 +234,10 @@ body {
     justify-content: center;
     align-items: center;
     align-items: center;
+    background: url(../img/genericPixelArt.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 #part {
@@ -254,17 +253,17 @@ body {
     transition: all 0.8s ease;
 }
 
-#paintsCards:hover {
+#paintsCard:hover {
     transform: scale(1.02);
 }
 
-#paintsCards:hover #part {
+#paintsCard:hover #part {
     align-items: flex-start;
     padding-left: 1em;
     flex-wrap: wrap;
 }
 
-#paintsCards:hover #part::after {
+#paintsCard:hover #part::after {
     content: "Imagem da parte referente";
 }
 
@@ -341,7 +340,7 @@ body {
 
 .contacts {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
     justify-content: right;
     align-items: flex-end;
@@ -352,13 +351,21 @@ body {
     margin-top: auto;
 }
 
-.contacts p {
-    font-size: 1em;
-    color: white;
+.contacts .personalPresentation {
+    display: flex;
+    justify-content: left;
+    text-align: justify;
+    overflow: auto;
+    width: 95%;
+    height: 90%;
+    max-width: 100%;
+    max-height: 95%;
+    padding: 1em;
 }
 
 .contacts a {
-    font-size: 1.4em;
+    font-size: 2em;
+    cursor: pointer;
 }
 
 .rodape {
@@ -377,6 +384,10 @@ body {
 .rodape small {
     color: white;
     font-size: 1rem;
+}
+
+.rodape a {
+    text-decoration: none;
 }
 
 @keyframes pulsar {
