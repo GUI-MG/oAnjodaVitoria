@@ -1,3 +1,5 @@
+var content = [];
+
 let imagemAtual = 0;
 const totalImagens = 4;
 
@@ -33,6 +35,8 @@ function proximaImagem() {
         `;
         part.innerHTML += partHTML;
         partHTML = '';
+        const contentContainer = document.querySelector('.loadedContent');
+        contentContainer.innerHTML = '';
     }
 }
 
@@ -51,6 +55,8 @@ function imagemAnterior() {
         `;
         part.innerHTML += partHTML;
         partHTML = '';
+        const contentContainer = document.querySelector('.loadedContent');
+        contentContainer.innerHTML = '';
     }
 }
 
@@ -68,6 +74,8 @@ function irParaImagem(indice) {
     `;
     part.innerHTML += partHTML;
     partHTML = '';
+    const contentContainer = document.querySelector('.loadedContent');
+    contentContainer.innerHTML = '';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -89,5 +97,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function loadContent() {
-    console.log("Hello World!");
+    const contentContainer = document.querySelector('.loadedContent');
+    contentContainer.innerHTML = '';
+    const part = document.getElementById('part');
+    part.innerHTML = '';
+
+    if(contentContainer.innerHTML != '') {
+        return;
+    }
+
+    
+    let containerHTML = '';
+    
+    containerHTML = `
+    <div class="content"> 
+    <h2><strong>Parte ${imagemAtual+1} </strong></h2>
+    <p>Texto refente a parte</p>
+    </div>
+    `;
+
+    contentContainer.innerHTML += containerHTML;
+
+    return contentContainer;
 }

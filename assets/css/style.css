@@ -300,6 +300,22 @@ body {
     font-size: 1em;
 }
 
+.loadedContent {
+    transition: all 0.5s ease;
+}
+
+.loadedContent:has(.content) {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 30vh;
+    width: 80%;
+}
+
+.loadedContent:has(.content) h2 {
+    font-size: 2.5em;
+}
+
 /* Parte em desenvolvimento */
 
 #development{
