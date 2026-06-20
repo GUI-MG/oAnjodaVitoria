@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: right;
     background: linear-gradient(to right, rgb(130, 130, 130), rgb(10, 15, 10));
-    height: 14vh;
+    height: 12vh;
     width: 100%;
 }
 
@@ -190,20 +190,20 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    flex-basis: 200;
-    flex-grow: 1;
-    height: 100vh;
-    max-height: 150vh;
+    height: 82vh;
+    max-height: 110vh;
     width: 100%;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 2em;
-    background: url(../img/genericPixelArt.jpeg);
+    justify-content: space-between;
+    background: '';
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     overflow: hidden;
     transition: all 0.6s ease;
+    box-shadow: 2px 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0.5em;
+    transition: background-image 0.5s ease;
 }
 
 #part {
@@ -217,6 +217,12 @@ body {
     height: 100%;
     font-size: 1.2rem;
     transition: all 0.8s ease;
+    font-size: 2.5rem;
+    color: white;
+}
+
+#part p {
+    font-size: 0.6em;
 }
 
 #paints:hover #part {
@@ -225,8 +231,73 @@ body {
     flex-wrap: wrap;
 }
 
-#paints:hover #part::after {
-    content: "Imagem da parte referente";
+.paintsActions {
+    display: flex;
+    width: 95%;
+    height: 6vh;
+    margin-bottom: 2em;
+}
+
+.paintsActions .container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.lastPaint {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 33.3%;
+    height: 100%;
+    font-size: 1em;
+}
+
+.nextPaint{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    width: 33.3%;
+    height: 100%;
+    font-size: 1em;
+}
+
+.containerCarousel {
+    display: flex;
+    gap: 8px;
+}
+
+.bolinha {
+    width: 0.5vw;
+    height: 0.5vw;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bolinha.ativa {
+    background-color: #333;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.paintButton {
+    background: lightgray;
+    border: none;
+    border-radius: 80px;
+    height: 4vh;
+    width: 5vw;
+    margin: 0.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 /* Parte em desenvolvimento */

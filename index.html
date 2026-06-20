@@ -26,11 +26,30 @@
 
     <main id="principal" class="container">
 
-        <section id="paints" class="container">
-            <div id="part">
-                <h2><strong><i class="bi bi-easel2-fill"></i> Parte 1</strong></h2>
+        <section id="paints" class="container" onclick="loadContent()">
+            <div id="part"></div>
+        </section>
+
+        <section class="paintsActions">
+            <div class="container">
+                <div class="lastPaint" onclick="imagemAnterior()">
+                    <button class="paintButton"><i class="bi bi-caret-left"></i></button><p>Anterior</p>
+                </div> 
+                <div class="carousel">
+                    <div class="containerCarousel">
+                        <span class="bolinha ativa" onclick="irParaImagem(0)"></span>
+                        <span class="bolinha" onclick="irParaImagem(1)"></span>
+                        <span class="bolinha" onclick="irParaImagem(2)"></span>
+                        <span class="bolinha" onclick="irParaImagem(3)"></span>
+                    </div>
+                </div>
+                <div class="nextPaint" onclick="proximaImagem()">
+                    <p>Próximo</p><button class="paintButton"><i class="bi bi-caret-right"></i></button>
+                </div>
             </div>
         </section>
+
+        <section class="contentLoaded"></section>
 
         <section id="pdf" class="container">
             <h3><strong>Desejas somente o conto? Clique abaixo!</strong></h3>
@@ -49,6 +68,6 @@
         </div>
     </footer>
 
-    <script src="../js/functions.js"></script>
+    <script src="js/functions.js"></script>
 </body>
 </html>
