@@ -427,6 +427,7 @@ body {
     justify-content: center;
     overflow: auto;
     transition: all 0.6s ease;
+    color: white;
 }
 
 .personalPresentation:has(.presentationContent) ~ .contacts {
