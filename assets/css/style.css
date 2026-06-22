@@ -71,6 +71,7 @@ body {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    transition: all 0.8s ease;
 }
 
 .presentation {
@@ -200,10 +201,9 @@ body {
     background-position: center;
     background-size: cover;
     overflow: hidden;
-    transition: all 0.6s ease;
     box-shadow: 2px 1px 1px 2px rgba(0, 0, 0, 0.5);
     margin-bottom: 0.5em;
-    transition: background-image 0.5s ease;
+    transition: all 0.6s ease;
 }
 
 #part {
@@ -300,6 +300,14 @@ body {
     font-size: 1em;
 }
 
+.lastPaint p {
+    cursor: pointer;
+}
+
+.nextPaint p {
+    cursor: pointer;
+}
+
 .loadedContent {
     transition: all 0.5s ease;
 }
@@ -311,8 +319,8 @@ body {
     height: 40vh;
     width: 80%;
     border-radius: 30px;
-    box-shadow: 2px 1px 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 1.2rem;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
     margin-bottom: 2rem;
     text-align: justify;
 }
@@ -353,7 +361,7 @@ body {
 #personCard {
     display: flex;
     flex-grow: 1;
-    height: 20vh;
+    height: 8vh;
     width: 90%;
     max-width: 92%;
     background: linear-gradient(to left, rgb(240, 240, 240), rgb(160, 160, 170));
@@ -364,7 +372,7 @@ body {
 }
 
 #personCard:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 #personCard a {
@@ -381,50 +389,95 @@ body {
 
 .personName {
     display: flex;
-    justify-content: left;
-    align-items: center;
-    text-align: justify;
-    font-size: 1em;
-    transition: all 0.5s ease;
-    transition-delay: 10ms;
-    width: 100%;
-    height: 30%;
-    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     color: white;
+    height: 90%;
+    font-size: 1.05em;
 }
 
 .contacts {
     display: flex;
-    flex-direction: row;
-    flex-grow: 1;
     justify-content: right;
-    align-items: flex-end;
-    flex-basis: 200;
+    align-items: center;
+    transition: all 0.5s ease;
     width: 100%;
-    height: 30%;
-    max-height: 40%;
-    margin-top: auto;
+    height: 10%;
 }
 
 .contacts a {
-    font-size: 1.8em;
+    font-size: 1.4em;
     cursor: pointer;
+    transition: all 0.6s ease;
 }
 
-.personalPresentation {
+.contacts a:hover {
+    transform: scale(1.06);
+}
+
+.presentationContent {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    font-size: 1.2em;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    overflow: auto;
+}
+
+.personalPresentation:has(.presentationContent) ~ .contacts {
+    height: 20%;
+    margin-top: auto;
+}
+
+.personalPresentation:has(.presentationContent) {
     display: flex;
     justify-content: left;
     text-align: justify;
     overflow: auto;
     width: 95%;
-    height: 90%;
     max-width: 100%;
     max-height: 95%;
-    padding: 1em;
+    padding: 0.4em;
     color: white;
+    transition: all 0.6s ease;
 }
 
+#personCard:has(.personalPresentation .presentationContent) {
+    height: 28vh;
+}
 
+#personCard:has(.presentationContent) .personName{
+    height: 20%;
+    font-size: 1.1em;
+}
+
+.clearCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 90%;
+    height: 20%;
+}
+
+.clearCards button {
+    height: 50%;
+    width: 45%;
+    border-radius: 20px;
+    border: none;
+    background: transparent;
+    box-shadow: 2px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.6s ease;
+    font-size: 1em;
+}
+
+.clearCards button:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border: #ccc;
+}
 
 .rodape {
     display: flex;
