@@ -173,6 +173,11 @@ function loadContent() {
 
 function loadPresentation(id) {
     const personalPresentation = document.querySelectorAll('.personalPresentation');
+    
+    if(personalPresentation[id-1].innerHTML != '') {
+        personalPresentation[id-1].innerHTML = '';
+        return personalPresentation;
+    }
 
     let presentationHTML = '';
 
