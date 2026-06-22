@@ -184,10 +184,10 @@ function loadPresentation(id) {
                 </div>
             `;
 
-            personalPresentation[id >= 2 ? id - 2 : id - 1].innerHTML = '';
-            if(personalPresentation[id > 5 ? id - 1 : id].innerHTML != '') {
-                personalPresentation[id].innerHTML = '';
-            }
+            //personalPresentation[id >= 2 ? id - 2 : id - 1].innerHTML = '';
+            //if(personalPresentation[id > 5 ? id - 1 : id].innerHTML != '') {
+            //    personalPresentation[id].innerHTML = '';
+            //}
 
             for (let i = 0; i < personalPresentation.length; i++) {
                 const container = personalPresentation[i];
