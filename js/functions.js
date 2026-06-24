@@ -1,17 +1,25 @@
 var content = [
     {
+        title: 'Parte 1',
+        subtitle: 'Clique para ver mais',
         nome: 'Parte 1',
-        texto: "Texto referente a parte 1."
+        texto: 'Texto referente a parte 1.'
     },
     {
+        title: 'Parte 2',
+        subtitle: 'Clique para ver mais',
         nome: 'Parte 2',
         texto: "Texto referente a parte 2."
     },
     {
+        title: 'Parte 3',
+        subtitle: 'Clique para ver mais',
         nome: 'Parte 3',
         texto: "Texto referente a parte 3."
     },
     {
+        title: 'Parte 4',
+        subtitle: 'Clique para ver mais',
         nome: 'Parte 4',
         texto: "Texto referente a parte 4."
     }
@@ -55,6 +63,7 @@ const totalImagens = 4;
 
 function atualizarBolinhas() {
     const bolinhas = document.querySelectorAll('.carousel .containerCarousel .bolinha');
+    const part = document.querySelector('.part');
     
     if(bolinhas.length == 0) {
         return;
@@ -75,8 +84,22 @@ function proximaImagem() {
         imagemAtual++;
         atualizarBolinhas();
         const paints = document.getElementById('paints');
-        const part = document.getElementById('part');
-        var partHTML = '';
+        const part = document.querySelector('.part');
+        const closeContent = document.querySelector('.closeContent');
+        const contentContainer = document.querySelector('.contentContainer');
+        
+        if(contentContainer.innerHTML != '' && part.innerHTML == '' && closeContent.innerHTML != '') {
+            contentContainer.innerHTML = '';
+            closeContent.innerHTML = '';
+            paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
+            part.innerHTML += 
+            `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
+            <p><i>${content[imagemAtual].subtitle}</i></p>`;
+            return contentContainer, part, closeContent;
+        }
+
+        let partHTML = '';
+        part.innerHTML = '';
 
         paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
         partHTML = `
@@ -85,8 +108,6 @@ function proximaImagem() {
         `;
         part.innerHTML += partHTML;
         partHTML = '';
-        const contentContainer = document.querySelector('.loadedContent');
-        contentContainer.innerHTML = '';
     }
 };
 
@@ -95,8 +116,22 @@ function imagemAnterior() {
         imagemAtual--;
         atualizarBolinhas();
         const paints = document.getElementById('paints');
-        const part = document.getElementById('part');
-        var partHTML = '';
+        const part = document.querySelector('.part');
+        const closeContent = document.querySelector('.closeContent');
+        const contentContainer = document.querySelector('.contentContainer');
+
+        if(contentContainer.innerHTML != '' && part.innerHTML == '' && closeContent.innerHTML != '') {
+            contentContainer.innerHTML = '';
+            closeContent.innerHTML = '';
+            paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
+            part.innerHTML += 
+            `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
+            <p><i>${content[imagemAtual].subtitle}</i></p>`;
+            return contentContainer, part, closeContent;
+        }
+
+        part.innerHTML = '';
+        let partHTML = '';
 
         paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
         partHTML = `
@@ -105,8 +140,6 @@ function imagemAnterior() {
         `;
         part.innerHTML += partHTML;
         partHTML = '';
-        const contentContainer = document.querySelector('.loadedContent');
-        contentContainer.innerHTML = '';
     }
 };
 
@@ -114,18 +147,29 @@ function irParaImagem(indice) {
     imagemAtual = indice;
     atualizarBolinhas();
     const paints = document.getElementById('paints');
-    const part = document.getElementById('part');
-    var partHTML = '';
+    const part = document.querySelector('.part');
+    const closeContent = document.querySelector('.closeContent');
+    const contentContainer = document.querySelector('.contentContainer');
+    
+    if(contentContainer.innerHTML != '' && part.innerHTML == '' && closeContent.innerHTML != '') {
+        contentContainer.innerHTML = '';
+        closeContent.innerHTML = '';
+        part.innerHTML += 
+        `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
+        <p><i>${content[imagemAtual].subtitle}</i></p>`;
+        paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
+        return contentContainer, part, closeContent, paints;
+    }
 
-    paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
+    let partHTML = '';
+
     partHTML = `
         <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
         <p><i>Clique para ver mais</i></p>
     `;
+    paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
     part.innerHTML += partHTML;
     partHTML = '';
-    const contentContainer = document.querySelector('.loadedContent');
-    contentContainer.innerHTML = '';
 };
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -136,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }else {
         paints.style.backgroundImage = 'url(assets/img/imagem1.jpeg)';
-        const part = document.getElementById('part');
+        const part = document.querySelector('.part');
         partHTML = `
             <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
             <p><i>Clique para ver mais</i></p>
@@ -147,28 +191,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function loadContent() {
-    const contentContainer = document.querySelector('.loadedContent');
-    contentContainer.innerHTML = '';
-    const part = document.getElementById('part');
-    part.innerHTML = '';
+    const contentContainer = document.querySelector('.contentContainer');
+    const part = document.querySelector('.part');
+    const closeContent = document.querySelector('.closeContent');
 
-    if(contentContainer.innerHTML != '') {
+    if(contentContainer == null || part == null || closeContent == null) {
+        Swal.fire ({
+            title: 'Oops...',
+            text: 'Ocorreu algo de errado.',
+            icon: 'error',
+            timer: 2500,
+            showConfirmButton: false
+        });
         return;
     }
 
-    
+    if(contentContainer.innerHTML != '' && part.innerHTML == '' && closeContent.innerHTML != '') {
+        contentContainer.innerHTML = '';
+        closeContent.innerHTML = '';
+        part.innerHTML += 
+        `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
+        <p><i>${content[imagemAtual].subtitle}</i></p>`;
+        return contentContainer, part, closeContent;
+    }
+
+    part.innerHTML = '';
     let containerHTML = '';
     
     containerHTML = `
         <div class="content"> 
             <h2><strong>${content[imagemAtual].nome}</strong></h2>
-            <p>${content[imagemAtual].texto}</p>
+        <p>${content[imagemAtual].texto}</p>
         </div>
     `;
 
-    contentContainer.innerHTML += containerHTML;
-
-    return contentContainer;
+    return contentContainer.innerHTML += containerHTML, closeContent.innerHTML += `<p><span>Clique novamente na imagem para fechar.</span></p>`;
 };
 
 function loadPresentation(id) {
