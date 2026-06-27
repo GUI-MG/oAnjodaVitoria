@@ -29,32 +29,32 @@ var presentation = [
     {
         id: 1,
         nome: "Guilherme Martins Glaeser",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 17 anos."
     },
     {
         id: 2,
         nome: "Alan A. de Vargas",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 17 anos."
     },
     {
         id: 3,
         nome: "Marcos A. R. da Silva",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 19 anos."
     },
     {
         id: 4,
         nome: "Otávio B. Flores",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 17 anos."
     },
     {
         id: 5,
         nome: "Sofia C. T. Cunha",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 17 anos."
     },
     {
         id: 6,
         nome: "Emily S. Schons",
-        apresentacao: "Texto de apresentação."
+        apresentacao: "Estudante do IFRS Campus Feliz, cursando o Técnico em Informática integrado ao Ensino Médio e possui 18 anos."
     }
 ];
 
@@ -94,7 +94,7 @@ function proximaImagem() {
             paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
             part.innerHTML += 
             `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
-            <p><i>${content[imagemAtual].subtitle}</i></p>`;
+            <p><i><b>${content[imagemAtual].subtitle}</b></i></p>`;
             return contentContainer, part, closeContent;
         }
 
@@ -104,7 +104,7 @@ function proximaImagem() {
         paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
         partHTML = `
             <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
-            <p><i>Clique para ver mais</i></p>
+            <p><i><b>${content[imagemAtual].subtitle}</b></i></p>
         `;
         part.innerHTML += partHTML;
         partHTML = '';
@@ -126,7 +126,7 @@ function imagemAnterior() {
             paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
             part.innerHTML += 
             `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
-            <p><i>${content[imagemAtual].subtitle}</i></p>`;
+            <p><i><b>${content[imagemAtual].subtitle}</b></i></p>`;
             return contentContainer, part, closeContent;
         }
 
@@ -136,7 +136,7 @@ function imagemAnterior() {
         paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
         partHTML = `
             <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
-            <p><i>Clique para ver mais</i></p>
+            <p><i><b>${content[imagemAtual].subtitle}</b></i></p>
         `;
         part.innerHTML += partHTML;
         partHTML = '';
@@ -156,7 +156,7 @@ function irParaImagem(indice) {
         closeContent.innerHTML = '';
         part.innerHTML += 
         `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
-        <p><i>${content[imagemAtual].subtitle}</i></p>`;
+        <p><i><b>${content[imagemAtual].subtitle}</b></i></p>`;
         paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
         return contentContainer, part, closeContent, paints;
     }
@@ -165,7 +165,7 @@ function irParaImagem(indice) {
 
     partHTML = `
         <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
-        <p><i>Clique para ver mais</i></p>
+        <p><i><b>${content[imagemAtual].subtitle}</b></i></p>
     `;
     paints.style.backgroundImage = `url(assets/img/imagem${imagemAtual+1}.jpeg)`;
     part.innerHTML += partHTML;
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const part = document.querySelector('.part');
         partHTML = `
             <h2><strong><i class="bi bi-easel2-fill"></i> Parte ${imagemAtual+1} </strong></h2>
-            <p><i>Clique para ver mais</i></p>
+            <p><i><b>${content[imagemAtual].subtitle}</b></i></p>
         `;
         part.innerHTML += partHTML;
     }
@@ -211,7 +211,7 @@ function loadContent() {
         closeContent.innerHTML = '';
         part.innerHTML += 
         `<h2><strong><i class="bi bi-easel2-fill"></i>${content[imagemAtual].title}</strong></h2>
-        <p><i>${content[imagemAtual].subtitle}</i></p>`;
+        <p><i><b>${content[imagemAtual].subtitle}</b></i></p>`;
         return contentContainer, part, closeContent;
     }
 

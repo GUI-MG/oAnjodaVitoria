@@ -777,7 +777,7 @@ body {
     overflow: hidden;
     box-shadow: inset 0 -120px 100px -40px rgba(20, 17, 15, 0.9), 0 0 0 1px var(--couro);
     margin-bottom: 0.5em;
-    transition: all 0.6s ease;
+    transition: all 0.8s ease-in-out;
 }
 
 .part {
@@ -795,6 +795,11 @@ body {
     color: var(--pergaminho);
     font-family: "Playfair Display", serif;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.part h2 {
+    transition-delay: .6s;
+    transition: all 0.4s ease-in-out;
 }
 
 .part p {
@@ -898,7 +903,9 @@ body {
 }
 
 .loadedContent {
-    transition: all 0.5s ease;
+    object-position: center;
+    transition-delay: .8s;
+    transition: all 0.6s ease-in-out;
 }
 
 .loadedContent:has(.content) {
@@ -988,7 +995,7 @@ body {
     align-items: flex-start;
     justify-content: center;
     color: var(--pergaminho);
-    height: 100%;
+    height: 80%;
     font-size: 1.05em;
     transition: all 0.6s ease;
     font-family: "Playfair Display", serif;
@@ -1000,7 +1007,8 @@ body {
     align-items: center;
     transition: all 0.6s ease;
     width: 100%;
-    height: 10%;
+    height: 20%;
+    margin-bottom: 1rem;
 }
 
 .contacts a {
@@ -1023,41 +1031,42 @@ body {
     height: 100%;
     width: 100%;
     justify-content: center;
-    overflow: auto;
-    transition-delay: 2s;
-    transition: all 0.6s ease;
+    transition-delay: 1s;
+    transition: all 0.8s ease;
     color: var(--pergaminho);
+    overflow: auto;
 }
 
 .personalPresentation:has(.presentationContent) ~ .contacts {
     transition: all 0.6s ease;
     height: 20%;
     margin-top: auto;
+    margin-bottom: 0;
 }
 
 .personalPresentation:has(.presentationContent) {
     display: flex;
     justify-content: left;
     text-align: justify;
-    overflow: auto;
     width: 90%;
     max-width: 100%;
     max-height: 95%;
     padding: 0.4em;
     color: var(--pergaminho);
     transition: all 0.6s ease;
+    overflow: hidden;
 }
 
 #personCard:has(.personalPresentation .presentationContent) {
-    height: 30vh;
-    transition: all 0.6s ease;
+    height: 15vh;
+    transition: all 0.8s ease;
     background: linear-gradient(to bottom, var(--couro), var(--noite-clara));
 }
 
 #personCard:has(.presentationContent) .personName{
     height: 20%;
     font-size: 1.1em;
-    transition: all 0.6s ease;
+    transition: all 0.6s ease-in-out;
 }
 
 .closeContent {
