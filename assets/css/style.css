@@ -543,7 +543,719 @@
    velho Blau Nunes: céu escuro, brasa e couro.
    ============================================ */
 
-/* :root {
+:root {
+    --noite: #14110f;
+    --noite-clara: #221c18;
+    --couro: #5a3d2b;
+    --couro-claro: #8a5f3f;
+    --brasa: #d97742;
+    --brasa-forte: #b8452f;
+    --pergaminho: #e8dcc3;
+    --pergaminho-escuro: #c9b896;
+    --erva: #5c6e4f;
+}
+
+/* Ajustado para travar o estouro lateral e garantir o encaixe perfeito da altura */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Evita qualquer rolagem para os lados */
+}
+
+body {
+    font-family: "Lora", "Playfair Display", Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--noite);
+    color: var(--pergaminho);
+    box-sizing: border-box;
+}
+
+/* Garante que o padding/border não empurre a largura para fora */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+#navbar {
+    display: flex;
+    justify-content: flex-end;
+    background: linear-gradient(to right, var(--noite-clara), var(--noite));
+    border-bottom: 1px solid var(--couro);
+    height: 12vh;
+    width: 100%;
+}
+
+#navbar .navActions{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+    padding-right: 6%;
+    align-items: center;
+}
+
+#navbar .navButton {
+    background-color: transparent;
+    color: var(--pergaminho);
+    border: 2px solid var(--couro-claro);
+    width: clamp(5.5rem, 18vw, 9rem);
+    min-height: clamp(2.2em, 6vw, 3em);
+    max-width: 9rem;
+    border-radius: 16px;
+    padding: 0.3em 0.5em;
+    text-align: center;
+    white-space: normal;               
+    line-height: 1.15;
+    font-size: clamp(0.65em, 2vw, 1em);
+    transition: transform 0.8s ease, border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+}
+
+.navButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--couro) 0%, var(--brasa) 100%);
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
+#navbar .navButton:hover {
+    transform: scale(1.06);
+    color: var(--noite);
+    border-color: var(--brasa);
+}
+
+#navbar .navButton:hover::before {
+    left: 0;
+}
+
+#principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s ease;
+    width: 100%;
+    max-width: 100%;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+#book {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    width: 100%;
+}
+
+#principal #bookHistory.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    background-color: var(--noite-clara);
+    box-shadow: 0 0 0 1px var(--couro), 0 8px 24px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 12px;
+    padding-bottom: 2rem;
+}
+
+#principal #title h2>strong {
+    font-size: 2.5rem;
+    font-family: "Playfair Display", serif;
+    color: var(--brasa);
+}
+
+#topic {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 90%;
+    background-color: rgba(232, 220, 195, 0.04);
+    box-shadow: inset 0 0 0 1px rgba(201, 184, 150, 0.15);
+    border-radius: 10px;
+    text-align: justify;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    color: var(--pergaminho);
+}
+
+#topic:hover {
+    transform: scale(1.02);
+    box-shadow: inset 0 0 0 1px var(--brasa), 0 6px 18px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+#topic h3 {
+    font-size: 1.4rem;
+    font-family: "Playfair Display", serif;
+    color: var(--brasa);
+}
+
+#pdf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--noite-clara);
+    box-shadow: 0 0 0 1px var(--couro), 0 8px 20px rgba(0, 0, 0, 0.5);
+    height: auto; /* Mudado de 16vh para auto para evitar bugs de transbordo */
+    min-height: 16vh;
+    width: 55%;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    margin-top: auto;
+    transition: all 0.6s ease;
+    color: var(--pergaminho);
+}
+
+#downloadBook {
+    width: clamp(9rem, 34vw, 14rem);
+    min-height: clamp(2.1em, 7vw, 2.6em);
+    padding: 0.3em 0.6em;
+    background-color: transparent;
+    color: var(--pergaminho);
+    border: 2px solid var(--couro-claro);
+    border-radius: 15px;
+    transition: all 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+    line-height: 1.15;
+    font-size: clamp(0.8rem, 2.6vw, 1.2rem);
+}
+
+#downloadBook::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--brasa-forte) 0%, var(--brasa) 100%);
+    z-index: -1;
+    transition: right 0.4s ease;
+}
+
+#downloadBook:hover {
+    transform: scale(1.06);
+    color: var(--noite);
+    border-color: var(--brasa);
+    animation: pulsar 1.2s infinite;
+}
+
+#downloadBook:hover::before {
+    right: 0;
+}
+
+#paints {
+    display: flex;
+    flex-direction: column;
+    height: 75vh; /* Ajustado de 100vh para um valor mais seguro no mobile para não empurrar o footer */
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--noite);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    box-shadow: inset 0 -120px 100px -40px rgba(20, 17, 15, 0.9), 0 0 0 1px var(--couro);
+    margin-bottom: 0; /* Zerado para sumir com a faixa abaixo */
+    transition: all 0.8s ease-in-out;
+}
+
+.part {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    transition: all 0.8s ease;
+    font-size: 2.5rem;
+    color: var(--pergaminho);
+    font-family: "Playfair Display", serif;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.part h2 {
+    transition: all 0.4s ease-in-out;
+}
+
+.part p {
+    font-size: 0.6em;
+    color: var(--pergaminho-escuro);
+}
+
+#paints:hover .part {
+    align-items: flex-start;
+    padding-left: 1em;
+}
+
+.paintsActions {
+    display: flex;
+    width: 95%;
+    height: 6vh;
+    margin-bottom: 2em;
+}
+
+.paintsActions .container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.lastPaint, .nextPaint {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 33.3%;
+    height: 100%;
+    font-size: 1em;
+    color: var(--pergaminho);
+}
+
+.lastPaint { justify-content: flex-start; }
+.nextPaint { justify-content: flex-end; }
+
+.containerCarousel {
+    display: flex;
+    gap: 8px;
+}
+
+.bolinha {
+    width: 8px; /* Alterado de vw para px fixo para evitar distorção */
+    height: 8px;
+    background-color: var(--couro);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.bolinha.ativa {
+    background-color: var(--brasa);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px var(--brasa);
+}
+
+.paintButton {
+    background: var(--couro);
+    color: var(--pergaminho);
+    border: none;
+    border-radius: 20px;
+    width: clamp(3.2rem, 9vw, 5.5rem);
+    min-height: clamp(2.2rem, 4vh, 3rem);
+    padding: 0.3em 0.5em;
+    margin: 0.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+    line-height: 1.1;
+    font-size: clamp(0.7em, 2vw, 1em);
+}
+
+.paintButton:hover {
+    background: var(--brasa);
+    color: var(--noite);
+    transform: scale(1.08);
+}
+
+.lastPaint p, .nextPaint p {
+    cursor: pointer;
+}
+
+.loadedContent {
+    transition: all 0.6s ease-in-out;
+}
+
+.loadedContent:has(.content) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 40vh;
+    width: 80%;
+    border-radius: 30px;
+    background-color: var(--noite-clara);
+    box-shadow: 0 0 0 1px var(--couro), 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+    color: var(--pergaminho);
+}
+
+.loadedContent:has(.content) h2 {
+    font-size: 2.5em;
+    font-family: "Playfair Display", serif;
+    color: var(--brasa);
+}
+
+#development{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 1.4em;
+    transition: all 0.4s ease;
+    color: var(--pergaminho);
+}
+
+#development:hover {
+    transform: scale(1.01);
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 2em 0;
+    gap: 2em;
+    align-items: center;
+}
+
+#personCard {
+    display: flex;
+    height: auto;
+    min-height: 8vh;
+    width: 90%;
+    background: linear-gradient(to left, var(--couro), var(--noite-clara));
+    border-radius: 30px;
+    padding: 0.8em;
+    transition: all 0.6s ease;
+    box-shadow: 0 0 0 1px rgba(201, 184, 150, 0.15);
+}
+
+#personCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 1px var(--brasa), 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+#personCard a {
+    text-decoration: none;
+    color: var(--pergaminho-escuro);
+}
+
+#personCard .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.personName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: var(--pergaminho);
+    font-size: 1.05em;
+    transition: all 0.6s ease;
+    font-family: "Playfair Display", serif;
+}
+
+.contacts {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: all 0.6s ease;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.contacts a {
+    font-size: 1.4em;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    color: var(--pergaminho-escuro);
+}
+
+.contacts a:hover {
+    transform: scale(1.06);
+    color: var(--brasa);
+}
+
+.presentationContent {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    font-size: 1.2em;
+    width: 100%;
+    justify-content: center;
+    transition: all 0.8s ease;
+    color: var(--pergaminho);
+}
+
+.personalPresentation:has(.presentationContent) ~ .contacts {
+    transition: all 0.6s ease;
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.personalPresentation:has(.presentationContent) {
+    display: flex;
+    justify-content: flex-start;
+    text-align: justify;
+    width: 100%;
+    padding: 0.4em;
+    color: var(--pergaminho);
+    transition: all 0.6s ease;
+}
+
+#personCard:has(.personalPresentation .presentationContent) {
+    height: auto;
+    background: linear-gradient(to bottom, var(--couro), var(--noite-clara));
+}
+
+#personCard:has(.presentationContent) .personName{
+    font-size: 1.1em;
+    transition: all 0.6s ease-in-out;
+}
+
+.closeContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: auto;
+}
+
+.closeContent span {
+    color: var(--pergaminho-escuro);
+    font-style: italic;
+}
+
+ .clearCards {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 90%;
+}
+
+.clearCards button {
+    border-radius: 20px;
+    border: none;
+    background: transparent;
+    transition: all 0.6s ease;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.clearCards button:hover {
+    transform: scale(1.1);
+} 
+
+/* Forçado margem zero na base e ajuste perfeito do fluxo flexbox */
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    background: linear-gradient(to right, var(--noite-clara), var(--noite));
+    border-top: 1px solid var(--couro);
+    height: 8vh;
+    width: 100%;
+}
+
+.rodape small {
+    color: var(--pergaminho-escuro);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.rodape a {
+    text-decoration: none;
+}
+
+@keyframes pulsar {
+    0% {transform: scale(1); box-shadow: 0 0 0 rgba(217, 119, 66, 0);}
+    50% {transform: scale(1.04); box-shadow: 0 0 18px rgba(217, 119, 66, 0.6); }
+    100% {transform: scale(1); box-shadow: 0 0 0 rgba(217, 119, 66, 0);}
+}
+
+/* ---------- Tablet: <= 1024px ---------- */
+@media (max-width: 1024px) {
+    #principal #bookHistory.container {
+        width: 92%;
+    }
+
+    #topic {
+        width: 95%;
+    }
+
+    #pdf {
+        width: 75%;
+    }
+
+    #personCard {
+        width: 90%;
+    }
+}
+
+/* ---------- Mobile: <= 768px ---------- */
+@media (max-width: 768px) {
+    #navbar {
+        height: auto;
+        min-height: 10vh;
+        padding: 0.6em 0;
+    }
+
+    #navbar .navActions {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-right: 0;
+        gap: 0.6em;
+    }
+
+    #principal #title h2 > strong {
+        font-size: 1.8rem;
+    }
+
+    #principal #bookHistory.container {
+        width: 96%;
+        padding: 0.8rem;
+    }
+
+    #topic {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    #topic h3 {
+        font-size: 1.15rem;
+    }
+
+    #pdf {
+        width: 90%;
+        height: auto;
+        padding: 1.2rem;
+        font-size: 1rem;
+    }
+
+    #paints {
+        height: 60vh; /* Ajuste preciso para evitar o scroll fantasma */
+    }
+
+    .part {
+        font-size: 1.7rem;
+        width: 95%;
+    }
+
+    .paintsActions {
+        flex-wrap: wrap;
+        height: auto;
+        margin-bottom: 1.2em;
+        gap: 0.6em;
+    }
+
+    .lastPaint, .nextPaint {
+        width: auto;
+        font-size: 0.9em;
+    }
+
+    .loadedContent:has(.content) {
+        width: 92%;
+        height: auto;
+        padding: 1.2rem;
+    }
+
+    #cards {
+        margin: 1em 0;
+        gap: 1.2em;
+    }
+
+    #personCard {
+        width: 90%;
+        height: auto;
+    }
+
+    .presentationContent {
+        font-size: 1em;
+    }
+
+    .rodape {
+        height: auto;
+        min-height: 7vh;
+        padding: 0.6em 0;
+    }
+}
+
+/* ---------- Mobile portrait: <= 480px ---------- */
+@media (max-width: 480px) {
+    #principal #title h2 > strong {
+        font-size: 1.4rem;
+    }
+
+    #topic h3 {
+        font-size: 1rem;
+    }
+
+    #pdf {
+        width: 96%;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    #paints {
+        height: 55vh;
+    }
+
+    .part {
+        font-size: 1.3rem;
+    }
+
+    .loadedContent:has(.content) h2 {
+        font-size: 1.4em;
+    }
+
+    .contacts a {
+        font-size: 1.1em;
+    }
+
+    .personName {
+        font-size: 0.95em;
+    }
+}
+
+
+/* ============================================
+   O Anjo da Vitória — paleta "fogueira no campo"
+   Inspirada nas noites de chimarrão e causos do
+   velho Blau Nunes: céu escuro, brasa e couro.
+   ============================================ */
+
+/*:root {
     --noite: #14110f;
     --noite-clara: #221c18;
     --couro: #5a3d2b;
@@ -589,30 +1301,32 @@ body {
     background-color: transparent;
     color: var(--pergaminho);
     border: 2px solid var(--couro-claro);
-    width: 8.4rem;
-    max-width: 9rem;
+    width: clamp(5.5rem, 18vw, 9rem);
     border-radius: 16px;
-    height: 3em;
-    max-height: 3.5em;
+    min-height: clamp(2.2em, 6vw, 3em);
+    padding: 0.3em 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.15;
     transition: transform 0.8s ease, border-color 0.4s ease;
     position: relative;
-    overflow: hidden;
     z-index: 1;
     cursor: pointer;
-    font-size: 1em;
+    font-size: clamp(0.65em, 2vw, 1em);
     font-family: "Playfair Display", serif;
 }
 
 .navButton::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(to right, var(--couro) 0%, var(--brasa) 100%);
+    clip-path: inset(0 100% 0 0 round 16px);
     z-index: -1;
-    transition: left 0.4s ease;
+    transition: clip-path 0.4s ease;
 }
 
 
@@ -623,7 +1337,7 @@ body {
 }
 
 #navbar .navButton:hover::before {
-    left: 0;
+    clip-path: inset(0 0 0 0 round 16px);
 }
 
 #principal {
@@ -700,6 +1414,14 @@ body {
     color: var(--brasa);
 }
 
+#conto {
+    text-decoration: none;
+}
+
+#completeBook {
+    text-decoration: none;
+}
+
 #pdf {
     display: flex;
     flex-direction: column;
@@ -723,30 +1445,32 @@ body {
     background-color: transparent;
     color: var(--pergaminho);
     border: 2px solid var(--couro-claro);
-    width: 14rem;
-    max-width: 14rem;
+    width: clamp(9rem, 34vw, 14rem);
     border-radius: 15px;
-    height: 2.6em;
-    max-height: 3em;
+    min-height: clamp(2.1em, 7vw, 2.6em);
+    padding: 0.3em 0.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.15;
     transition: all 0.8s ease;
     position: relative;
-    overflow: hidden;
     z-index: 1;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: clamp(0.8rem, 2.6vw, 1.2rem);
     font-family: "Playfair Display", serif;
 }
 
 #downloadBook::before {
     content: "";
     position: absolute;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(to right, var(--brasa-forte) 0%, var(--brasa) 100%);
+    clip-path: inset(0 0 0 100% round 15px);
     z-index: -1;
-    transition: right 0.4s ease;
+    transition: clip-path 0.4s ease;
 }
 
 
@@ -758,15 +1482,15 @@ body {
 }
 
 #downloadBook:hover::before {
-    right: 0;
+    clip-path: inset(0 0 0 0 round 15px);
 }
 
 #paints {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 100vh;
-    max-height: 110vh;
+    height: 120vh;
+    max-height: 120vh;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -857,8 +1581,8 @@ body {
 }
 
 .bolinha {
-    width: 0.5vw;
-    height: 0.5vw;
+    width: clamp(0.5rem, 1.4vw, 0.7rem);
+    height: clamp(0.5rem, 1.4vw, 0.7rem);
     background-color: var(--couro);
     border-radius: 50%;
     cursor: pointer;
@@ -877,14 +1601,18 @@ body {
     color: var(--pergaminho);
     border: none;
     border-radius: 80px;
-    height: 4vh;
-    width: 5vw;
+    min-height: clamp(2.2rem, 4vh, 3rem);
+    width: clamp(3.2rem, 9vw, 5.5rem);
+    padding: 0.3em 0.5em;
     margin: 0.4em;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.1;
     cursor: pointer;
-    font-size: 1em;
+    font-size: clamp(0.7em, 2vw, 1em);
     transition: background-color 0.4s ease, transform 0.3s ease;
 }
 
@@ -961,624 +1689,8 @@ body {
 
 #personCard {
     display: flex;
-    flex-grow: 1;
-    height: 8vh;
-    width: 90%;
-    max-width: 92%;
-    background: linear-gradient(to left, var(--couro), var(--noite-clara));
-    border-radius: 30px;
-    padding: 0.8em;
-    transition: all 0.6s ease;
-    box-shadow: 0 0 0 1px rgba(201, 184, 150, 0.15);
-}
-
-#personCard:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 0 1px var(--brasa), 0 6px 18px rgba(0, 0, 0, 0.4);
-}
-
-#personCard a {
-    text-decoration: none;
-    color: var(--pergaminho-escuro);
-}
-
-#personCard .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-.personName {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    color: var(--pergaminho);
-    height: 80%;
-    font-size: 1.05em;
-    transition: all 0.6s ease;
-    font-family: "Playfair Display", serif;
-}
-
-.contacts {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    transition: all 0.6s ease;
-    width: 100%;
-    height: 20%;
-    margin-bottom: 1rem;
-}
-
-.contacts a {
-    font-size: 1.4em;
-    cursor: pointer;
-    transition: all 0.6s ease;
-    color: var(--pergaminho-escuro);
-}
-
-.contacts a:hover {
-    transform: scale(1.06);
-    color: var(--brasa);
-}
-
-.presentationContent {
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
-    font-size: 1.2em;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    transition-delay: 1s;
-    transition: all 0.8s ease;
-    color: var(--pergaminho);
-    overflow: auto;
-}
-
-.personalPresentation:has(.presentationContent) ~ .contacts {
-    transition: all 0.6s ease;
-    height: 20%;
-    margin-top: auto;
-    margin-bottom: 0;
-}
-
-.personalPresentation:has(.presentationContent) {
-    display: flex;
-    justify-content: left;
-    text-align: justify;
-    width: 90%;
-    max-width: 100%;
-    max-height: 95%;
-    padding: 0.4em;
-    color: var(--pergaminho);
-    transition: all 0.6s ease;
-    overflow: hidden;
-}
-
-#personCard:has(.personalPresentation .presentationContent) {
-    height: 15vh;
-    transition: all 0.8s ease;
-    background: linear-gradient(to bottom, var(--couro), var(--noite-clara));
-}
-
-#personCard:has(.presentationContent) .personName{
-    height: 20%;
-    font-size: 1.1em;
-    transition: all 0.6s ease-in-out;
-}
-
-.closeContent {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: right;
-    margin-top: auto;
-}
-
-.closeContent span {
-    color: var(--pergaminho-escuro);
-    font-style: italic;
-}
-
-/* .clearCards {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    width: 90%;
-    height: 70%;
-}
-
-.clearCards button {
-    height: 70%;
-    width: 20%;
-    border-radius: 20px;
-    border: none;
-    background: transparent;
-    transition: all 0.6s ease;
-    font-size: 1em;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.clearCards button:hover {
-    transform: scale(1.1);
-} */
-
-/*.rodape {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin-top: auto;
-    background: linear-gradient(to right, var(--noite-clara), var(--noite));
-    border-top: 1px solid var(--couro);
-    height: 8vh;
-    width: 100%;
-    align-items: center;
-    z-index: 999;
-}
-
-.rodape small {
-    color: var(--pergaminho-escuro);
-    font-size: 1rem;
-}
-
-.rodape a {
-    text-decoration: none;
-}
-
-@keyframes pulsar {
-    0% {transform: scale(1); box-shadow: 0 0 0 rgba(217, 119, 66, 0);}
-    50% {transform: scale(1.04); box-shadow: 0 0 18px rgba(217, 119, 66, 0.6); }
-    100% {transform: scale(1); box-shadow: 0 0 0 rgba(217, 119, 66, 0);}
-}
-
-@keyframes girar360 {
-    0% {transform: rotate(0deg);}
-    25% {transform: rotate(90deg);}
-    50% {transform: rotate(180deg);}
-    75% {transform: rotate(270deg);}
-    100% {transform: rotate(360deg);} 
-}
-
-@keyframes rotation{
-    from{
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-} */
-
-/* ============================================
-   O Anjo da Vitória — paleta "fogueira no campo"
-   Inspirada nas noites de chimarrão e causos do
-   velho Blau Nunes: céu escuro, brasa e couro.
-   ============================================ */
-
-:root {
-    --noite: #14110f;
-    --noite-clara: #221c18;
-    --couro: #5a3d2b;
-    --couro-claro: #8a5f3f;
-    --brasa: #d97742;
-    --brasa-forte: #b8452f;
-    --pergaminho: #e8dcc3;
-    --pergaminho-escuro: #c9b896;
-    --erva: #5c6e4f;
-}
-
-body {
-    font-family: "Lora", "Playfair Display", Georgia, serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--noite);
-    color: var(--pergaminho);
-}
-
-#navbar {
-    display: flex;
-    justify-content: right;
-    background: linear-gradient(to right, var(--noite-clara), var(--noite));
-    border-bottom: 1px solid var(--couro);
-    height: 12vh;
-    width: 100%;
-}
-
-#navbar .navActions{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    height: 100%;
-    padding-right: 6%;
-    align-items: center;
-}
-
-#navbar .navButton {
-    background-color: transparent;
-    color: var(--pergaminho);
-    border: 2px solid var(--couro-claro);
-    width: 8.5rem;
-    max-width: 9rem;
-    border-radius: 16px;
-    height: 3em;
-    max-height: 3.5em;
-    transition: transform 0.8s ease, border-color 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-    font-size: 1em;
-    font-family: "Playfair Display", serif;
-}
-
-.navButton::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--couro) 0%, var(--brasa) 100%);
-    z-index: -1;
-    transition: left 0.4s ease;
-}
-
-
-#navbar .navButton:hover {
-    transform: scale(1.06);
-    color: var(--noite);
-    border-color: var(--brasa);
-}
-
-#navbar .navButton:hover::before {
-    left: 0;
-}
-
-#principal {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.8s ease;
-}
-
-.presentation {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-
-#book {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.4rem;
-}
-
-#principal #bookHistory.container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    width: 80%;
-    background-color: var(--noite-clara);
-    box-shadow: 0 0 0 1px var(--couro), 0 8px 24px rgba(0, 0, 0, 0.5);
-    padding: 1rem;
-    border-radius: 12px;
-    padding-bottom: 2rem;
-}
-
-#principal #title h2>strong {
-    font-size: 2.5rem;
-    font-family: "Playfair Display", serif;
-    color: var(--brasa);
-}
-
-#topic {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding: 1rem;
-    width: 90%;
-    background-color: rgba(232, 220, 195, 0.04);
-    box-shadow: inset 0 0 0 1px rgba(201, 184, 150, 0.15);
-    border-radius: 10px;
-    text-align: justify;
-    transition: transform 0.6s ease, box-shadow 0.6s ease;
-    color: var(--pergaminho);
-}
-
-#topic:hover {
-    position: relative;
-    top: 0;
-    transform: scale(1.02);
-    box-shadow: inset 0 0 0 1px var(--brasa), 0 6px 18px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-}
-
-#topic h3 {
-    font-size: 1.4rem;
-    font-family: "Playfair Display", serif;
-    color: var(--brasa);
-}
-
-#pdf {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--noite-clara);
-    box-shadow: 0 0 0 1px var(--couro), 0 8px 20px rgba(0, 0, 0, 0.5);
-    height: 16vh;
-    width: 55%;
-    border-radius: 20px;
-    font-size: 1.1rem;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    margin-top: auto;
-    transition: all 0.6s ease;
-    color: var(--pergaminho);
-}
-
-#downloadBook {
-    background-color: transparent;
-    color: var(--pergaminho);
-    border: 2px solid var(--couro-claro);
-    width: 14rem;
-    max-width: 14rem;
-    border-radius: 15px;
-    height: 2.6em;
-    max-height: 3em;
-    transition: all 0.8s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-family: "Playfair Display", serif;
-}
-
-#downloadBook::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--brasa-forte) 0%, var(--brasa) 100%);
-    z-index: -1;
-    transition: right 0.4s ease;
-}
-
-
-#downloadBook:hover {
-    transform: scale(1.06);
-    color: var(--noite);
-    border-color: var(--brasa);
-    animation: pulsar 1.2s infinite;
-}
-
-#downloadBook:hover::before {
-    right: 0;
-}
-
-#paints {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100vh;
-    max-height: 110vh;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--noite);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    overflow: hidden;
-    box-shadow: inset 0 -120px 100px -40px rgba(20, 17, 15, 0.9), 0 0 0 1px var(--couro);
-    margin-bottom: 0.5em;
-    transition: all 0.8s ease-in-out;
-}
-
-.part {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-basis: 200;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 100%;
-    font-size: 1.2rem;
-    transition: all 0.8s ease;
-    font-size: 2.5rem;
-    color: var(--pergaminho);
-    font-family: "Playfair Display", serif;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
-}
-
-.part h2 {
-    transition-delay: .6s;
-    transition: all 0.4s ease-in-out;
-}
-
-.part p {
-    font-size: 0.6em;
-    color: var(--pergaminho-escuro);
-}
-
-#paints:hover .part {
-    align-items: flex-start;
-    padding-left: 1em;
-    flex-wrap: wrap;
-}
-
-.paintsActions {
-    display: flex;
-    width: 95%;
+    flex-grow: 0.7;
     height: 6vh;
-    margin-bottom: 2em;
-}
-
-.paintsActions .container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-}
-
-.lastPaint {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    width: 33.3%;
-    height: 100%;
-    font-size: 1em;
-    color: var(--pergaminho);
-}
-
-.nextPaint{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: right;
-    width: 33.3%;
-    height: 100%;
-    font-size: 1em;
-    color: var(--pergaminho);
-}
-
-.containerCarousel {
-    display: flex;
-    gap: 8px;
-}
-
-.bolinha {
-    width: 0.5vw;
-    height: 0.5vw;
-    background-color: var(--couro);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.4s ease, transform 0.4s ease;
-}
-
-.bolinha.ativa {
-    background-color: var(--brasa);
-    transform: scale(1.2);
-    cursor: pointer;
-    box-shadow: 0 0 8px var(--brasa);
-}
-
-.paintButton {
-    background: var(--couro);
-    color: var(--pergaminho);
-    border: none;
-    border-radius: 80px;
-    height: 4vh;
-    width: 5vw;
-    margin: 0.4em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.4s ease, transform 0.3s ease;
-}
-
-.paintButton:hover {
-    background: var(--brasa);
-    color: var(--noite);
-    transform: scale(1.08);
-}
-
-.lastPaint p {
-    cursor: pointer;
-}
-
-.nextPaint p {
-    cursor: pointer;
-}
-
-.loadedContent {
-    object-position: center;
-    transition-delay: .8s;
-    transition: all 0.6s ease-in-out;
-}
-
-.loadedContent:has(.content) {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    height: 40vh;
-    width: 80%;
-    border-radius: 30px;
-    background-color: var(--noite-clara);
-    box-shadow: 0 0 0 1px var(--couro), 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    text-align: justify;
-    color: var(--pergaminho);
-}
-
-.loadedContent:has(.content) h2 {
-    font-size: 2.5em;
-    font-family: "Playfair Display", serif;
-    color: var(--brasa);
-}
-
-/* Parte em desenvolvimento */
-
-#development{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: 1.4em;
-    transition: all 0.4s ease;
-    color: var(--pergaminho);
-}
-
-#development:hover {
-    transform: scale(1.01);
-}
-
-/* Cards dos integrantes do grupo */
-
-#cards {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 96%;
-    max-width: 98%;
-    margin: 2em;
-    gap: 2em;
-    align-items: center;
-    transition: all 0.6s ease-in-out;
-}
-
-#personCard {
-    display: flex;
-    flex-grow: 1;
-    height: 8vh;
     width: 90%;
     max-width: 92%;
     background: linear-gradient(to left, var(--couro), var(--noite-clara));
@@ -1648,13 +1760,13 @@ body {
     width: 100%;
     justify-content: center;
     transition-delay: 1s;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease;
     color: var(--pergaminho);
     overflow: auto;
 }
 
 .personalPresentation:has(.presentationContent) ~ .contacts {
-    transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease;
     height: 20%;
     margin-top: auto;
     margin-bottom: 0;
@@ -1669,13 +1781,13 @@ body {
     max-height: 95%;
     padding: 0.4em;
     color: var(--pergaminho);
-    transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease;
     overflow: hidden;
 }
 
 #personCard:has(.personalPresentation .presentationContent) {
     height: 15vh;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease;
     background: linear-gradient(to bottom, var(--couro), var(--noite-clara));
 }
 
@@ -1744,230 +1856,4 @@ body {
         transform: rotate(360deg);
     }
 }
-
-/* ============================================================
-   RESPONSIVE — @media queries
-   Breakpoints: 1024px (tablet), 768px (mobile landscape/small
-   tablet), 480px (mobile portrait)
-   ============================================================ */
-
-/* ---------- Tablet: <= 1024px ---------- */
-@media (max-width: 1024px) {
-    #principal #bookHistory.container {
-        width: 92%;
-    }
-
-    #topic {
-        width: 95%;
-    }
-
-    #pdf {
-        width: 75%;
-    }
-
-    .paintButton {
-        width: 8vw;
-        height: 5vh;
-    }
-
-    .bolinha {
-        width: 1vw;
-        height: 1vw;
-    }
-
-    #cards {
-        width: 98%;
-    }
-
-    #personCard {
-        width: 95%;
-    }
-}
-
-/* ---------- Mobile landscape / small tablet: <= 768px ---------- */
-@media (max-width: 768px) {
-    #navbar {
-        height: auto;
-        min-height: 10vh;
-        padding: 0.6em 0;
-    }
-
-    #navbar .navActions {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-right: 0;
-        gap: 0.6em;
-    }
-
-    #navbar .navButton {
-        width: 7rem;
-        font-size: 0.9em;
-    }
-
-    #principal #title h2 > strong {
-        font-size: 1.8rem;
-    }
-
-    #principal #bookHistory.container {
-        width: 96%;
-        padding: 0.8rem;
-    }
-
-    #topic {
-        width: 100%;
-        padding: 0.8rem;
-    }
-
-    #topic h3 {
-        font-size: 1.15rem;
-    }
-
-    #pdf {
-        width: 90%;
-        height: auto;
-        padding: 1.2rem;
-        font-size: 1rem;
-    }
-
-    #downloadBook {
-        width: 12rem;
-        font-size: 1rem;
-    }
-
-    #paints {
-        height: 70vh;
-    }
-
-    .part {
-        font-size: 1.7rem;
-        width: 95%;
-    }
-
-    .part p {
-        font-size: 0.65em;
-    }
-
-    .paintsActions {
-        flex-wrap: wrap;
-        height: auto;
-        margin-bottom: 1.2em;
-        gap: 0.6em;
-    }
-
-    .lastPaint,
-    .nextPaint {
-        width: auto;
-        font-size: 0.9em;
-    }
-
-    .paintButton {
-        width: 12vw;
-        height: 4.5vh;
-        font-size: 0.9em;
-    }
-
-    .bolinha {
-        width: 1.6vw;
-        height: 1.6vw;
-    }
-
-    .loadedContent:has(.content) {
-        width: 92%;
-        height: auto;
-        padding: 1.2rem;
-    }
-
-    .loadedContent:has(.content) h2 {
-        font-size: 1.8em;
-    }
-
-    #cards {
-        width: 100%;
-        margin: 1em 0;
-        gap: 1.2em;
-    }
-
-    #personCard {
-        width: 96%;
-        max-width: 96%;
-        height: auto;
-        min-height: 8vh;
-    }
-
-    #personCard:has(.personalPresentation .presentationContent) {
-        height: auto;
-        min-height: 20vh;
-    }
-
-    .presentationContent {
-        font-size: 1em;
-    }
-
-    .rodape {
-        height: auto;
-        min-height: 6vh;
-        padding: 0.6em 0;
-        text-align: center;
-    }
-}
-
-/* ---------- Mobile portrait: <= 480px ---------- */
-@media (max-width: 480px) {
-    #navbar .navButton {
-        width: 6rem;
-        max-width: 6.5rem;
-        font-size: 0.8em;
-        height: 2.6em;
-    }
-
-    #principal #title h2 > strong {
-        font-size: 1.4rem;
-    }
-
-    #topic h3 {
-        font-size: 1rem;
-    }
-
-    #pdf {
-        width: 96%;
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
-
-    #downloadBook {
-        width: 10rem;
-        font-size: 0.9rem;
-        height: 2.4em;
-    }
-
-    #paints {
-        height: 60vh;
-    }
-
-    .part {
-        font-size: 1.3rem;
-    }
-
-    .paintButton {
-        width: 22vw;
-        height: 4vh;
-        font-size: 0.85em;
-    }
-
-    .bolinha {
-        width: 2.2vw;
-        height: 2.2vw;
-    }
-
-    .loadedContent:has(.content) h2 {
-        font-size: 1.4em;
-    }
-
-    .contacts a {
-        font-size: 1.1em;
-    }
-
-    .personName {
-        font-size: 0.95em;
-    }
-}
+ */
